@@ -8,8 +8,11 @@ Count total words in Arabic text
 Count total characters (excluding spaces and punctuation)
 
 How to Use:
+
 1.Put your Arabic text in "arabic_text.txt"
+
 2.Run the script
+
 3.Results saved to "analysis_result.txt"
 
 Why I Built This:
