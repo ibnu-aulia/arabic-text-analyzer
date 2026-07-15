@@ -10,6 +10,12 @@ Count total words in Arabic text
 
 Count total characters (excluding spaces and punctuation)
 
+Count total unique letters in Arabic text
+
+Find the most used word in Arabic text
+
+Find the longest word in Arabic text
+
 How to Use:
 
 1.Put your Arabic text in "arabic_text.txt"
