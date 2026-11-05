@@ -41,7 +41,7 @@ Practicing OOP concepts in Python while building tools relevant to my future pat
 - Trained for 500 epochs on a Colab T4 GPU
 
 ### Result
-Loss dropped to about 0.006 and accuracy reached 1.0 on 8 sentences.
+Loss dropped to about 0.05 and accuracy reached 1.0 on 8 sentences.
 
 ### Key findings
 - Words are matched exactly, so a word with the definite article (السيء instead of سيء) or a spelling variant (hamza/alif forms, ي vs ى) is not counted, and the sentence can look neutral.
