@@ -18,12 +18,14 @@ Simple Python tool to analyze Arabic text from a text file.
 2. Run the script
 3. Results are saved to `analysis_result.txt`
 
+Code: [ArabicTextAnalyzer.py](https://github.com/ibnu-aulia/arabic-text-analyzer/blob/main/ArabicTextAnalyzer.py)
+
 ### Why I Built This
 Practicing OOP concepts in Python while building tools relevant to my future path in Arabic NLP.
 
 ## 2. EDA Notebook: Arabic Reviews
 
-`arabic-reviews-eda.ipynb` is an exploratory data analysis of an Arabic reviews dataset (~100k reviews).
+[arabic_reviews_eda.ipynb](https://github.com/ibnu-aulia/arabic-text-analyzer/blob/main/arabic_reviews_eda.ipynb) is an exploratory data analysis of an Arabic reviews dataset (~100k reviews).
 
 - Top 10 most frequent words, before and after removing Arabic stopwords
 - Bar chart with properly rendered Arabic labels (`arabic_reshaper`, `python-bidi`)
@@ -34,7 +36,7 @@ Practicing OOP concepts in Python while building tools relevant to my future pat
 
 ## 3. First Neural Network: Arabic Sentiment
 
-`arabic-sentiment-first-neural-net.ipynb` is my first neural network in PyTorch, trained to classify short Arabic reviews as good (1) or bad (0).
+[arabic_sentiment_first_neural_net.ipynb](https://github.com/ibnu-aulia/arabic-text-analyzer/blob/main/arabic_sentiment_first_neural_net.ipynb) is my first neural network in PyTorch, trained to classify short Arabic reviews as good (1) or bad (0).
 
 - Code counts good and bad words in each sentence, turning it into two numbers
 - A 2-layer network (2 inputs, 3 neurons, ReLU, 1 neuron, sigmoid) is trained on them
