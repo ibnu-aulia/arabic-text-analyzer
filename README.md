@@ -48,10 +48,47 @@ Loss dropped to about 0.05 and accuracy reached 1.0 on 8 sentences.
 - Accuracy was measured on the training sentences only, so it does not show how the model handles new sentences.
 
 ### Next
-Normalize Arabic text before counting, and test on unseen sentences.
+Normalize Arabic text before counting, and test on unseen sentences (done in section 4).
+
+## 4. Arabic Restaurant Review Sentiment
+
+`arabic_review_sentiment.ipynb` classifies Arabic restaurant reviews as positive or negative
+using TF-IDF features and scikit-learn. Data: [ArRestReviews](https://huggingface.co/datasets/hadyelsahar/ar_res_reviews) (8,364 reviews).
+
+- Explored the data: labels are imbalanced (71% positive), and negative reviews are longer.
+- Wrote an Arabic normalization function (alef variants, ي/ى, removing non-Arabic characters)
+  and removed 47 empty and 80 duplicate reviews.
+- Split the data 80/20 (stratified) and compared five models.
+
+### Result
+
+| Model | Accuracy | Recall (negative) | F1 (negative) |
+|---|---|---|---|
+| Always predict "positive" | 0.71 | 0.00 | - |
+| Logistic Regression | 0.84 | 0.52 | 0.65 |
+| Logistic Regression, balanced | 0.84 | 0.76 | 0.74 |
+| Random Forest, balanced | 0.83 | 0.53 | 0.65 |
+| Best: LR, balanced, 20k uni+bigrams | 0.86 | 0.77 | 0.76 |
+
+### Key findings
+- Accuracy hides the problem: the plain model missed almost half of the negative reviews.
+  Balanced class weights fixed most of that.
+- A more complex model (Random Forest) did not help.
+- Reading the mistakes by hand showed that negation (e.g. ما انصح, "I don't recommend")
+  is the main failure, because TF-IDF counts words, not their order.
+
+### Limitations
+Five models were compared on the same test set, so the best score is slightly optimistic.
+Arabizi (Arabic in Latin letters) is dropped by the cleaning step.
+
+### Next
+Cross-validation, better handling of negation and dialect, and fine-tuning a pretrained
+Arabic model (AraBERT).
+
+[Open the notebook](https://github.com/ibnu-aulia/arabic-text-analyzer/blob/main/arabic_review_sentiment.ipynb)
 
 ## Tech
-Python, pandas, scikit-learn, NLTK, PyTorch, matplotlib, seaborn
+Python, pandas, scikit-learn, NLTK, PyTorch, matplotlib, seaborn, Hugging Face datasets
 
 ## License
 MIT
