@@ -103,7 +103,7 @@ Arabic model (AraBERT).
 - The model, the tokenizer, and the preprocessing must match. AraBERT v2 on raw text gave broken subwords without any error message.
 - No tool separated the و perfectly. The word `والد` ("father") was wrongly split by the mini stemmer and by Stanza.
 - My own splitter worked on 5 test words only, and its threshold is my own choice. It is an experiment, not a finished tool.
-- 
+  
 ## Tech
 Python, pandas, scikit-learn, NLTK, PyTorch, matplotlib, seaborn, Hugging Face datasets and transformers, Stanza
 
