@@ -89,8 +89,23 @@ Arabic model (AraBERT).
 
 [Open the notebook](https://github.com/ibnu-aulia/arabic-text-analyzer/blob/main/arabic_review_sentiment.ipynb)
 
+## 5. Arabic Tokenization Experiments
+
+[arabic_tokenization_experiments.ipynb](https://github.com/ibnu-aulia/arabic-text-analyzer/blob/main/arabic_tokenization_experiments.ipynb) compares several ways to split Arabic text into tokens, and shows where each one breaks.
+
+- Plain `split()` vs a regex that keeps only Arabic letters
+- The same meaning needs 4 tokens in Arabic and 10 in English
+- A mini stemmer, and TF-IDF written from scratch (matches scikit-learn exactly)
+- Tokenizers: AraBERT v2 on raw text, AraBERT v02, Farasa, and Stanza
+- My own splitter for the prefix و, using word counts from the reviews
+
+### Key findings
+- The model, the tokenizer, and the preprocessing must match. AraBERT v2 on raw text gave broken subwords without any error message.
+- No tool separated the و perfectly. The word `والد` ("father") was wrongly split by the mini stemmer and by Stanza.
+- My own splitter worked on 5 test words only, and its threshold is my own choice. It is an experiment, not a finished tool.
+- 
 ## Tech
-Python, pandas, scikit-learn, NLTK, PyTorch, matplotlib, seaborn, Hugging Face datasets
+Python, pandas, scikit-learn, NLTK, PyTorch, matplotlib, seaborn, Hugging Face datasets and transformers, Stanza
 
 ## License
 MIT
