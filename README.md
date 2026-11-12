@@ -85,7 +85,7 @@ Arabizi (Arabic in Latin letters) is dropped by the cleaning step.
 
 ### Next
 Cross-validation, better handling of negation and dialect, and fine-tuning a pretrained
-Arabic model (AraBERT).
+Arabic model (AraBERT, done in section 6).
 
 [Open the notebook](https://github.com/ibnu-aulia/arabic-text-analyzer/blob/main/arabic_review_sentiment.ipynb)
 
@@ -103,9 +103,37 @@ Arabic model (AraBERT).
 - The model, the tokenizer, and the preprocessing must match. AraBERT v2 on raw text gave broken subwords without any error message.
 - No tool separated the و perfectly. The word `والد` ("father") was wrongly split by the mini stemmer and by Stanza.
 - My own splitter worked on 5 test words only, and its threshold is my own choice. It is an experiment, not a finished tool.
+
+  ## 6. Fine-tuning AraBERT on Restaurant Reviews
+
+[arabert_restaurant_sentiment.ipynb](https://github.com/ibnu-aulia/arabic-text-analyzer/blob/main/arabert_restaurant_sentiment.ipynb) fine-tunes AraBERT on the restaurant reviews from section 4 and compares it with my best TF-IDF model.
+
+- Used AraBERT v02 with its matching preprocessor and tokenizer (the pairing I learned in section 5)
+- Same cleaning and the same 80/20 split as section 4 (6,589 train, 1,648 test), so the comparison is fair
+- Fine-tuned for 3 epochs on a Colab T4 GPU (about 3 minutes)
+- Read the negative reviews that the model missed
+
+### Result
+
+| Model | Accuracy | Precision (negative) | Recall (negative) | F1 (negative) |
+|---|---|---|---|---|
+| Best TF-IDF: LR, balanced, 20k uni+bigrams | 0.86 | 0.74 | 0.77 | 0.76 |
+| Fine-tuned AraBERT (range over runs) | 0.89 | 0.83 to 0.84 | 0.76 to 0.78 | 0.80 to 0.81 |
+
+### Key findings
+- AraBERT was better on this split, mostly through precision on negative reviews. Recall on negative reviews was about the same as the TF-IDF model.
+- Results shifted slightly between runs of the same notebook, even with a fixed seed (between 103 and 113 missed negative reviews).
+- The missed reviews I read were mostly mixed reviews (praise first, complaint later), comparisons with other restaurants, and negation attached to the verb (like `ماعجبني`). The exact phrase `ما انصح` did not appear in them, but the search matches that exact spelling only.
+- Validation loss rose during training while training loss fell, which may be the start of overfitting.
+
+### Limitations
+Several runs and one split (no cross-validation). The TF-IDF model used class weights and AraBERT did not, so the comparison is not perfectly equal. About 10% of training reviews were cut at 128 tokens, and the error analysis covers only 8 reviews per run.
+
+### Next
+Class weights, negation and dialect cases on purpose, and cross-validation.
   
 ## Tech
-Python, pandas, scikit-learn, NLTK, PyTorch, matplotlib, seaborn, Hugging Face datasets and transformers, Stanza
+Python, pandas, scikit-learn, NLTK, PyTorch, matplotlib, seaborn, Hugging Face datasets and transformers, Stanza, arabert
 
 ## License
 MIT
