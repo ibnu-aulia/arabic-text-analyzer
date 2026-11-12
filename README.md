@@ -23,6 +23,7 @@ Code: [ArabicTextAnalyzer.py](https://github.com/ibnu-aulia/arabic-text-analyzer
 ### Why I Built This
 Practicing OOP concepts in Python while building tools relevant to my future path in Arabic NLP.
 
+
 ## 2. EDA Notebook: Arabic Reviews
 
 [arabic_reviews_eda.ipynb](https://github.com/ibnu-aulia/arabic-text-analyzer/blob/main/arabic_reviews_eda.ipynb) is an exploratory data analysis of an Arabic reviews dataset (~100k reviews).
@@ -33,6 +34,7 @@ Practicing OOP concepts in Python while building tools relevant to my future pat
 
 ### Key findings
 - `word_count` and `letter_count` are almost perfectly correlated (~0.998), because more words means more letters.
+  
 
 ## 3. First Neural Network: Arabic Sentiment
 
@@ -51,6 +53,7 @@ Loss dropped to about 0.05 and accuracy reached 1.0 on 8 sentences.
 
 ### Next
 Normalize Arabic text before counting, and test on unseen sentences (done in section 4).
+
 
 ## 4. Arabic Restaurant Review Sentiment
 
@@ -89,6 +92,7 @@ Arabic model (AraBERT, done in section 6).
 
 [Open the notebook](https://github.com/ibnu-aulia/arabic-text-analyzer/blob/main/arabic_review_sentiment.ipynb)
 
+
 ## 5. Arabic Tokenization Experiments
 
 [arabic_tokenization_experiments.ipynb](https://github.com/ibnu-aulia/arabic-text-analyzer/blob/main/arabic_tokenization_experiments.ipynb) compares several ways to split Arabic text into tokens, and shows where each one breaks.
@@ -104,7 +108,8 @@ Arabic model (AraBERT, done in section 6).
 - No tool separated the و perfectly. The word `والد` ("father") was wrongly split by the mini stemmer and by Stanza.
 - My own splitter worked on 5 test words only, and its threshold is my own choice. It is an experiment, not a finished tool.
 
-  ## 6. Fine-tuning AraBERT on Restaurant Reviews
+
+## 6. Fine-tuning AraBERT on Restaurant Reviews
 
 [arabert_restaurant_sentiment.ipynb](https://github.com/ibnu-aulia/arabic-text-analyzer/blob/main/arabert_restaurant_sentiment.ipynb) fine-tunes AraBERT on the restaurant reviews from section 4 and compares it with my best TF-IDF model.
 
